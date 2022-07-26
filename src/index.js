@@ -1,17 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+// import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
+import "./index.css"
+import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+//*here it takes two arguments
+//* 1) one is the component which we need to render on the browser (we need to pass the root component here)
+//* 2) second one is where we gonna put this first component into.......
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//* for the first argument we can add strick mode option , which can be used to do some additonal checks
+//!this is the old version(ie. react 17)
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
+
+
+//!THIS is the new version of rendering (react 18)
+const root = createRoot(document.getElementById("root"))
+root.render(<App/>)
