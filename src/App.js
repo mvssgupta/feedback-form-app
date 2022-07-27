@@ -1,13 +1,19 @@
 //* This the main component also known as root component
 import React from "react";
-import FeedbackItem from "./components/FeedbackItem";
+import { useState } from "react";
+import FeedbackList from "./components/FeedbackList";
 import HeaderComponent from "./components/HeaderComponent";
+import feedBackData from "./data/feedBackData";
+
 function App() {
+  const [feedback, setFeedback] = useState(feedBackData)
   return (
     <div>
       {/* we can pass arguments to the below header component */}
       <HeaderComponent></HeaderComponent>
-      <FeedbackItem></FeedbackItem>
+      <div>
+      <FeedbackList feedback = {feedback}></FeedbackList>
+      </div>
     </div>
   );
 }
