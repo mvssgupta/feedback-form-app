@@ -5,6 +5,7 @@ import FeedbackList from "./components/FeedbackList";
 import HeaderComponent from "./components/HeaderComponent";
 import feedBackData from "./data/feedBackData";
 import FeedbackStats from "./components/FeedbackStats";
+import FeedbackForm from "./components/FeedbackForm";
 
 function App() {
   const [feedback, setFeedback] = useState(feedBackData)
@@ -21,6 +22,7 @@ function App() {
       {/* we can pass arguments to the below header component */}
       <HeaderComponent></HeaderComponent>
       <div className="container">
+      <FeedbackForm></FeedbackForm>
       <FeedbackStats feedback = {feedback}></FeedbackStats>
       <FeedbackList feedback = {feedback} handleDelete ={deleteFeedback}></FeedbackList>
       </div>
