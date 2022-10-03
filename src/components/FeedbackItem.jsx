@@ -2,8 +2,9 @@ import React from "react";
 // import {useState} from "react";
 import PropTypes from "prop-types";
 import Card from "./shared/Card";
+import { FaTimesCircle } from "react-icons/fa"
 
-function FeedbackItem({item}) {
+function FeedbackItem({item , handleDelete}) {
 
   //*the below values are hard coded , we have to make it dynamic
   // const [rating, setRating] = useState(9)
@@ -21,6 +22,9 @@ function FeedbackItem({item}) {
   return (
     <Card>
       <div className="num-display">{item.rating}</div>
+      <button onClick={() => handleDelete(item.id)} className="close">
+        <FaTimesCircle color="red"></FaTimesCircle>
+      </button>
       <div className="text-display">{item.text}</div>
       {/* <button onClick = {useClick}>Click Me</button> */}
     </Card>

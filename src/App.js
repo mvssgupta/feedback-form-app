@@ -7,12 +7,20 @@ import feedBackData from "./data/feedBackData";
 
 function App() {
   const [feedback, setFeedback] = useState(feedBackData)
+
+  const deleteFeedback = (id) => {
+    if(window.confirm("Are you sure?"))
+    {
+      setFeedback(feedback.filter((item)=> item.id !==id))
+    }
+  }
+
   return (
     <div>
       {/* we can pass arguments to the below header component */}
       <HeaderComponent></HeaderComponent>
       <div>
-      <FeedbackList feedback = {feedback}></FeedbackList>
+      <FeedbackList feedback = {feedback} handleDelete ={deleteFeedback}></FeedbackList>
       </div>
     </div>
   );

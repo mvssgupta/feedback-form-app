@@ -18,7 +18,7 @@ function HeaderComponent({ text, bgColor, textColor }) {
 HeaderComponent.defaultProps = {
   text: "FeedBack App",
   bgColor: "rgba(0,0,0,0.4)",
-  textColor : "#ff6a95",
+  textColor : "#00ff00",
 };
 
 HeaderComponent.propTypes = {
