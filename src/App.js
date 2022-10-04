@@ -1,5 +1,6 @@
 //* This the main component also known as root component
 import React from "react";
+import { BrowserRouter as Router, Route ,Routes} from "react-router-dom";
 //this below package is used for generating new unique id for each of our new feedback
 import {v4 as uuidv4} from "uuid";
 import { useState } from "react";
@@ -8,6 +9,7 @@ import HeaderComponent from "./components/HeaderComponent";
 import feedBackData from "./data/feedBackData";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   const [feedback, setFeedback] = useState(feedBackData)
@@ -29,15 +31,26 @@ function App() {
   };
 
   return (
-    <div>
+    <Router>
       {/* we can pass arguments to the below header component */}
       <HeaderComponent></HeaderComponent>
       <div className="container">
-      <FeedbackForm handleAddFeedback = {addFeedback}></FeedbackForm>
-      <FeedbackStats feedback = {feedback}></FeedbackStats>
-      <FeedbackList feedback = {feedback} handleDelete ={deleteFeedback}></FeedbackList>
+      <Routes>
+
+        <Route exact path='/' element = {
+          <>
+            <FeedbackForm handleAddFeedback = {addFeedback}></FeedbackForm>
+            <FeedbackStats feedback = {feedback}></FeedbackStats>
+            <FeedbackList feedback = {feedback} handleDelete ={deleteFeedback}></FeedbackList> 
+          </>
+          } 
+        >
+        </Route>
+        <Route path='/about' element = {<AboutPage></AboutPage>}>
+        </Route>
+      </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
