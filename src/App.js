@@ -1,5 +1,7 @@
 //* This the main component also known as root component
 import React from "react";
+//this below package is used for generating new unique id for each of our new feedback
+import {v4 as uuidv4} from "uuid";
 import { useState } from "react";
 import FeedbackList from "./components/FeedbackList";
 import HeaderComponent from "./components/HeaderComponent";
@@ -17,12 +19,21 @@ function App() {
     }
   }
 
+  const addFeedback = (newFeedback) => {
+    //below code is used to create new id and assign it to the new feedback
+      newFeedback.id = uuidv4();
+      //pushing the newfeedback into our feedback variable
+      //here we are copying our old feedback items by fetching them by using ... operator
+      //and adding them our newfeedback
+      setFeedback([newFeedback, ...feedback]);
+  };
+
   return (
     <div>
       {/* we can pass arguments to the below header component */}
       <HeaderComponent></HeaderComponent>
       <div className="container">
-      <FeedbackForm></FeedbackForm>
+      <FeedbackForm handleAddFeedback = {addFeedback}></FeedbackForm>
       <FeedbackStats feedback = {feedback}></FeedbackStats>
       <FeedbackList feedback = {feedback} handleDelete ={deleteFeedback}></FeedbackList>
       </div>
