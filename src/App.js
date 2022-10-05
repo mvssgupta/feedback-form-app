@@ -10,6 +10,7 @@ import feedBackData from "./data/feedBackData";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
 import AboutPage from "./pages/AboutPage";
+import { FeedbackProvider } from "./context/FeedbackContext";
 import AboutIconLink from "./components/AboutIconLink";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
   };
 
   return (
+    <FeedbackProvider>
     <Router>
       {/* we can pass arguments to the below header component */}
       <HeaderComponent></HeaderComponent>
@@ -41,8 +43,8 @@ function App() {
         <Route exact path='/' element = {
           <>
             <FeedbackForm handleAddFeedback = {addFeedback}></FeedbackForm>
-            <FeedbackStats feedback = {feedback}></FeedbackStats>
-            <FeedbackList feedback = {feedback} handleDelete ={deleteFeedback}></FeedbackList> 
+            <FeedbackStats ></FeedbackStats>
+            <FeedbackList handleDelete ={deleteFeedback}></FeedbackList> 
           </>
           } 
         >
@@ -53,6 +55,7 @@ function App() {
       </div>
       <AboutIconLink></AboutIconLink>
     </Router>
+    </FeedbackProvider>
   );
 }
 

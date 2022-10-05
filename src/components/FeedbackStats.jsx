@@ -1,8 +1,13 @@
 //this component is used to display the number of rating and the average rating.
 
 import React from 'react'
-import PropTypes from 'prop-types'
-function FeedbackStats({feedback}) {
+
+import { useContext } from 'react'
+import FeedbackContext from '../context/FeedbackContext'
+function FeedbackStats() {
+
+    
+  const {feedback} = useContext(FeedbackContext);
 
     //calculating the average using 'reduce' higher order function
     let average = (feedback.reduce((sum,curr) => {
@@ -20,10 +25,6 @@ function FeedbackStats({feedback}) {
         <h4>Average Rating : {isNaN(average) ? 0 : average}</h4>
     </div>
   )
-}
-
-FeedbackStats.propTypes = {
-    feedback : PropTypes.array.isRequired,
 }
 
 export default FeedbackStats

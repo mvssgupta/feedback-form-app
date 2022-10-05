@@ -1,9 +1,15 @@
 import React from 'react'
 import {motion , AnimatePresence} from "framer-motion"
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import FeedbackItem from './FeedbackItem'
+import { useContext } from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
-function feedbackList({feedback , handleDelete}) {
+function feedbackList({handleDelete}) {
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const {feedback} = useContext(FeedbackContext);
+
     if(!feedback || feedback.length === 0) {
         return <p>No feedBack</p>
     }
@@ -47,18 +53,18 @@ function feedbackList({feedback , handleDelete}) {
 //   )
 }
 
-feedbackList.propTypes = {
-    //* we can set it to array
-    // feedback : PropTypes.array, 
+// feedbackList.propTypes = {
+//     //* we can set it to array
+//     // feedback : PropTypes.array, 
 
-    //* Or to be more specific we can do as below
-    feedback : PropTypes.arrayOf(
-        PropTypes.shape({
-            id : PropTypes.number.isRequired,
-            text : PropTypes.string.isRequired,
-            rating : PropTypes.number.isRequired,
-        })
-    )
-}
+//     //* Or to be more specific we can do as below
+//     feedback : PropTypes.arrayOf(
+//         PropTypes.shape({
+//             id : PropTypes.number.isRequired,
+//             text : PropTypes.string.isRequired,
+//             rating : PropTypes.number.isRequired,
+//         })
+//     )
+// }
 
 export default feedbackList
