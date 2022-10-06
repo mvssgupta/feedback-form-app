@@ -2,13 +2,13 @@ import React from "react";
 // import {useState} from "react";
 import PropTypes from "prop-types";
 import Card from "./shared/Card";
-import { FaTimesCircle } from "react-icons/fa"
+import { FaTimesCircle , FaRegEdit} from "react-icons/fa"
 import {useContext} from "react";
 import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackItem({item}) {
 
-  const {deleteFeedback} = useContext(FeedbackContext);
+  const {deleteFeedback , editFeedback} = useContext(FeedbackContext);
 
   //*the below values are hard coded , we have to make it dynamic
   // const [rating, setRating] = useState(9)
@@ -28,6 +28,11 @@ function FeedbackItem({item}) {
       <div className="num-display">{item.rating}</div>
       <button onClick={() => deleteFeedback(item.id)} className="close">
         <FaTimesCircle color="red"></FaTimesCircle>
+      </button>
+      <button onClick={() => editFeedback(item)} className="edit">
+        <FaRegEdit color="green">
+
+        </FaRegEdit>
       </button>
       <div className="text-display">{item.text}</div>
       {/* <button onClick = {useClick}>Click Me</button> */}
