@@ -1,12 +1,8 @@
 //* This the main component also known as root component
 import React from "react";
 import { BrowserRouter as Router, Route ,Routes} from "react-router-dom";
-//this below package is used for generating new unique id for each of our new feedback
-import {v4 as uuidv4} from "uuid";
-import { useState } from "react";
 import FeedbackList from "./components/FeedbackList";
 import HeaderComponent from "./components/HeaderComponent";
-import feedBackData from "./data/feedBackData";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
 import AboutPage from "./pages/AboutPage";
@@ -14,24 +10,6 @@ import { FeedbackProvider } from "./context/FeedbackContext";
 import AboutIconLink from "./components/AboutIconLink";
 
 function App() {
-  const [feedback, setFeedback] = useState(feedBackData)
-
-  const deleteFeedback = (id) => {
-    if(window.confirm("Are you sure?"))
-    {
-      setFeedback(feedback.filter((item)=> item.id !==id))
-    }
-  }
-
-  const addFeedback = (newFeedback) => {
-    //below code is used to create new id and assign it to the new feedback
-      newFeedback.id = uuidv4();
-      //pushing the newfeedback into our feedback variable
-      //here we are copying our old feedback items by fetching them by using ... operator
-      //and adding them our newfeedback
-      setFeedback([newFeedback, ...feedback]);
-  };
-
   return (
     <FeedbackProvider>
     <Router>
@@ -42,9 +20,9 @@ function App() {
 
         <Route exact path='/' element = {
           <>
-            <FeedbackForm handleAddFeedback = {addFeedback}></FeedbackForm>
+            <FeedbackForm ></FeedbackForm>
             <FeedbackStats ></FeedbackStats>
-            <FeedbackList handleDelete ={deleteFeedback}></FeedbackList> 
+            <FeedbackList ></FeedbackList> 
           </>
           } 
         >
